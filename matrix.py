@@ -99,6 +99,7 @@ def condition_number(A):
     norm_inversed_A = np.linalg.norm(inverse_matrix(A))
     return norm_A * norm_inversed_A
 
+
 def display_matrix(m):
     for row in m:
         print(row)
