@@ -1,41 +1,45 @@
-from math import e
+from math import e, log
 
 
-def work(f, a, b, n):
-    print("\nТекущее число разбиений: ", n)
+a = 2
+b = 3
+
+exact_value = (1/3 * log((e ** (3 * b)) / (1 + e ** (3 * b)))) - (1/3 * log((e ** (3 * a)) / (1 + e ** (3 * a))))
+
+
+def f(x):
+    return 1 / (1 + e ** (3 * x))
+
+
+def calc(f, a, b, n):
     h = (b-a)/float(n)
+    print("\nПоточна кількість розбиттів: ", n)
     result = 0
-    print("Текущий шаг:", h)
     for i in range(n):
         result += f(a + h * (i+0.5))
     result *= h
-    print("Текущий результат: ", result)
+    print("Поточний результат ", result)
     return result
 
-def left_rec(a1, a2, n):
-    while abs(a1 - a2) > 0.01:
+
+def left(a1, a2, n, acc):
+    while abs(a1 - a2) > acc:
         n *= 2
-        a1 = work(f, 2, 3, n)
+        a1 = calc(f, 2, 3, n)
         n *= 2
-        a2 = work(f, 2, 3, n)
+        a2 = calc(f, 2, 3, n)
     return a2
 
 
-f = lambda x: 1/(1 + e**(3*x))
-
-print("Используем формулу левых прямоугольников")
-print("Интегрируемая функция: f(x) = sin(x)")
-print("Точность: 0.001")
+accuracy = float(input("Введіть точність: "))
 
 n = 2
-a1 = work(f, 2, 3, n)
+a1 = calc(f, 2, 3, n)
 n *= 2
-a2 = work(f, 2, 3, n)
+a2 = calc(f, 2, 3, n)
 
-res = left_rec(a1, a2, n)
+res = left(a1, a2, n, accuracy)
 
-print("\nОтвет MIDDLE:", res, "\nКоличество разбиений:", n)
 
-# Ответ LEFT: 0.0011140255944274023
-# Ответ MIDDLE: 0.0007660802077907916
-# Ответ Right: 0.0005267184492652666
+print(f"I = {res}, кількість розбиттів = {n}")
+print(f"Первісна = {exact_value}")
