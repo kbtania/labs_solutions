@@ -13,12 +13,12 @@ def f(x):
 
 def calc(f, a, b, n):
     h = (b-a)/float(n)
-    print("\nПоточна кількість розбиттів: ", n)
+   # print("\nПоточна кількість розбиттів: ", n)
     result = 0
     for i in range(n):
         result += f(a + h * (i))
     result *= h
-    print("Поточний результат ", result)
+    #print("Поточний результат ", result)
     return result
 
 

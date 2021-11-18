@@ -13,16 +13,16 @@ def f(x):
 
 def calc(f, a, b, n):
     h = (b-a)/float(n)
-    print("\nПоточна кількість розбиттів: ", n)
+    #print("\nПоточна кількість розбиттів: ", n)
     result = 0
     for i in range(n):
         result += f(a + h * (i+1))
     result *= h
-    print("Поточний результат ", result)
+    #print("Поточний результат ", result)
     return result
 
 
-def left(a1, a2, n, acc):
+def right(a1, a2, n, acc):
     while abs(a1 - a2) > acc:
         n *= 2
         a1 = calc(f, 2, 3, n)
@@ -38,7 +38,7 @@ a1 = calc(f, 2, 3, n)
 n *= 2
 a2 = calc(f, 2, 3, n)
 
-res = left(a1, a2, n, accuracy)
+res = right(a1, a2, n, accuracy)
 
 
 print(f"I = {res}, кількість розбиттів = {n}")
