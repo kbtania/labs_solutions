@@ -13,7 +13,7 @@ def simpson(f, a, b, n):
         s += 4 * f(a + i * h)
     for i in range(2, n-1, 2):
         s += 2 * f(a + i * h)
-
+    print("n = ", n)
     return s * h / 3
 
 def f(x):

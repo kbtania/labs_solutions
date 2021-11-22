@@ -1,4 +1,3 @@
-
 from math import e, log
 
 a = 2
@@ -21,7 +20,7 @@ def trapezoidal(f, x0, xn, n):
         integration = integration + 2 * f(k)
 
     integration = integration * h / 2
-
+    print("n = ", n)
     return integration
 
 def calc(a1, a2, n, acc):

@@ -18,6 +18,7 @@ def calc(f, a, b, n):
     for i in range(n):
         result += f(a + h * (i+1))
     result *= h
+    print("n = ", n)
     #print("Поточний результат ", result)
     return result
 
